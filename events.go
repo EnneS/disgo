@@ -1,4 +1,4 @@
-package main
+package disgo
 
 type (
 	Event interface {

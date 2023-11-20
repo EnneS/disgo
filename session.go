@@ -1,4 +1,4 @@
-package main
+package disgo
 
 import (
 	"github.com/bwmarrin/discordgo"

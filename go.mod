@@ -1,4 +1,4 @@
-module github.com/ennes/disGO
+module github.com/ennes/disgo
 
 go 1.21
 

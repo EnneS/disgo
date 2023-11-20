@@ -1,4 +1,4 @@
-package main
+package disgo
 
 import (
 	"math/rand"
