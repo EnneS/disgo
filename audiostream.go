@@ -25,7 +25,6 @@ const (
 func NewAudioStream(vc *discordgo.VoiceConnection) *AudioStream {
 	return &AudioStream{
 		Voice: vc,
-		done:  make(chan error),
 	}
 }
 
@@ -44,7 +43,7 @@ func (audioS *AudioStream) Play(s Song) error {
 		return err
 	}
 	defer encodingSession.Cleanup()
-
+	audioS.done = make(chan error)
 	audioS.streamingSession = dca.NewStream(encodingSession, audioS.Voice, audioS.done)
 	err = <-audioS.done
 	if err != nil && err != io.EOF {

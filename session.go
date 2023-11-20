@@ -121,6 +121,9 @@ func (s *Session) playNext() {
 }
 
 func (s *Session) stop() {
+	if !s.IsActive {
+		return
+	}
 	s.audioStream.Stop()
 	s.Queue.Clear()
 	s.IsActive = false
