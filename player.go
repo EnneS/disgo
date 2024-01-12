@@ -70,13 +70,6 @@ func (p *Player) Play(guildID string, chanID string, query string) (songs []Song
 		}
 	}()
 
-	// Look for an active session
-	session, err := p.getSession(guildID, chanID)
-	if err != nil {
-		return nil, err
-	}
-	queue := session.Queue
-
 	// Search for videos
 	ytSongs, err := p.YoutubeClient.Search(query)
 	if err != nil {
@@ -86,6 +79,13 @@ func (p *Player) Play(guildID string, chanID string, query string) (songs []Song
 	if len(ytSongs) == 0 {
 		return nil, nil
 	}
+
+	// Look for an active session
+	session, err := p.getSession(guildID, chanID)
+	if err != nil {
+		return nil, err
+	}
+	queue := session.Queue
 
 	// Add videos to queue
 	for _, ytSong := range ytSongs {
