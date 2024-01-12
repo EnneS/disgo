@@ -8,6 +8,7 @@ Contributions are welcome!
 - [discordgo](https://github.com/bwmarrin/discordgo) session
 - ffmpeg
 - libopus-dev libopusfile-dev
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 
 # Features
 - Beginner friendly
