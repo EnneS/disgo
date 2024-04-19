@@ -75,15 +75,15 @@ func (v *YoutubeSong) URL() (string, error) {
 	}
 
 	formats := video.Formats.WithAudioChannels() // only get videos with audio
-	format := formats.FindByItag(251)            // get the format with itag 251
-	if format == nil {
-		format = formats.FindByItag(140)
+	desiredFormats := formats.Itag(251)          // get the format with itag 251
+	if len(desiredFormats) == 0 {
+		desiredFormats = formats.Itag(140)
 	}
-	if format == nil {
-		return "", fmt.Errorf("no format found")
+	if len(desiredFormats) == 0 {
+		return "", fmt.Errorf("no suitable format found")
 	}
-	v.formatURL = format.URL
-	return format.URL, nil
+	v.formatURL = desiredFormats[0].URL
+	return v.formatURL, nil
 }
 
 func (v *YoutubeSong) Title() string {
